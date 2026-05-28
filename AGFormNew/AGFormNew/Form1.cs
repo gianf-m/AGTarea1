@@ -1,4 +1,5 @@
 using AGFormNew.Inputs;
+using System.Data.SqlTypes;
 
 namespace AGFormNew
 {
@@ -9,6 +10,8 @@ namespace AGFormNew
         private double mLimDer = 0;
         private string mCromosomaTotal = string.Empty;
         private double mNroBitsTotales = 0;
+        private double mSubStringDecimal = 0;
+
         private List<GridViewItem> mItems = new List<GridViewItem>();
         public Form1()
         {
@@ -45,6 +48,7 @@ namespace AGFormNew
 
             mNroBitsTotales += vGridItem.NroBits;
             mCromosomaTotal += vGridItem.Substring;
+            mSubStringDecimal = Convert.ToInt64(mCromosomaTotal, 2);
             CalcularTotales();
         }
 
@@ -109,11 +113,13 @@ namespace AGFormNew
             mPrecision = 0;
             mLimIzq = 0;
             mLimDer = 0;
+            
         }
         private void LimpiarVariablesGlobalesResultados()
         {
             mNroBitsTotales = 0;
             mCromosomaTotal = string.Empty;
+            mSubStringDecimal = 0;
         }
 
         private void LimpiarCombosDeTexto()
@@ -133,6 +139,7 @@ namespace AGFormNew
         {
             txt_NroBitsTotales.Text = mNroBitsTotales.ToString();
             txt_CromosomaTotal.Text = mCromosomaTotal;
+            txt_SubStringDecimal.Text = mSubStringDecimal.ToString();
         }
 
         private void btn_Limpiar_Click(object sender, EventArgs e)
